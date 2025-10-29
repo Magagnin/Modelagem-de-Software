@@ -1,18 +1,30 @@
-Passo 1: "Caçar" as Classes
+📝 Como Montar um Diagrama de Classes (Resumo)
+    Pense em montar um diagrama de classes como montar um quebra-cabeça do seu sistema. 
+    Você primeiro acha as peças (Classes), depois vê os detalhes de cada peça 
+    (Atributos e Métodos) e, por fim, encaixa elas (Relacionamentos).
+
+
+🗺️ Passo 1: "Caçar" as Classes
 O primeiro passo é ler o problema e "caçar" as classes.
 
 O que procurar? Procure por substantivos principais no texto. Coisas como Cliente, Pedido, Produto, Nota Fiscal, Usuário.
 
-Como separar? O (PDF 1) dá uma dica boa: separe as classes em três tipos:
+Como separar? O (PDF 1) dá uma dica boa de separar as classes em três tipos (padrão Entidade-Fronteira-Controle):
 
-Entidade (Entity): São as classes que guardam dados (a maioria). Ex: Cliente, Produto.
+Entidade (Entity): São as classes que guardam dados (a maioria).
 
-Fronteira (Boundary): São as classes que fazem a "ponte" com o usuário (as telas). Ex: TelaLogin, FormularioCadastro.
+Ex: Cliente, Produto, Carro.
 
-Controle (Control): São as classes "chefes" que coordenam as tarefas. Ex: ControladorDeVenda, GerenciadorDeLogin.
+Fronteira (Boundary): São as classes que fazem a "ponte" com o usuário (as telas).
+
+Ex: TelaLogin, FormularioCadastro.
+
+Controle (Control): São as classes "chefes" que coordenam as tarefas e regras de negócio.
+
+Ex: ControladorDeVenda, GerenciadorDeLogin.
 
 
-Passo 2: Detalhar as "Caixinhas"
+🎨 Passo 2: Detalhar as "Caixinhas"
 Agora que você tem as classes, desenhe a caixinha de cada uma. O (PDF 2) mostra que ela tem 3 partes:
 
 [ Nome da Classe ]
@@ -32,35 +44,35 @@ São as "ações" ou "o que ela faz".
 Ex: fazerPedido(), consultarHistorico().
 
 
-Passo 4: Conectar as Peças (Os Relacionamentos)
-Essa é a parte mais importante. Como as classes "conversam"? O (PDF 2) mostra os principais:
+🔗 Passo 3: Conectar as Peças (Relacionamentos)
+Essa é a parte mais importante: como as classes "conversam"? O (PDF 2) mostra os principais tipos de linhas:
 
-Associação (A linha reta):
+Associação (Linha reta ---):
 
 O que é? É o relacionamento mais comum. Diz que uma classe "conhece" ou "usa" a outra.
 
 Exemplo: Cliente --- Pedido. (Um Cliente faz um Pedido).
 
-Generalização / Herança (A seta com triângulo branco ◁):
+Generalização / Herança (Seta com triângulo branco ◁):
 
 O que é? É a relação "é-um-tipo-de". A classe "filha" herda tudo da "mãe".
 
-Exemplo: Pessoa <|--- Cliente. (Um Cliente é-um-tipo-de Pessoa. Ele tem nome, cpf, etc., mais o que for só dele, como limiteDeCredito).
+Exemplo: Pessoa <|--- Cliente. (Um Cliente é-um-tipo-de Pessoa).
 
-Agregação (O losango branco ◇):
+Agregação (Losango branco ◇):
 
 O que é? É uma associação do tipo "tem-um", mas as partes são independentes.
 
 Exemplo: Time <>--- Jogador. (Um Time tem Jogadores, mas se o time acabar, o jogador continua existindo).
 
-Composição (O losango preto ◆):
+Composição (Losango preto ◆):
 
 O que é? É um "tem-um" forte. A parte "morre" junto com o todo.
 
 Exemplo: Pedido <#>--- ItemDePedido. (Se você apagar o Pedido, o ItemDePedido não faz sentido existir sozinho, ele morre junto).
 
 
-Passo 5: Definir as "Regras" (Multiplicidade)
+🔢 Passo 5: Definir as "Regras" (Multiplicidade)
 Por fim, você coloca números nas pontas das linhas de associação para dizer quantos de cada lado se relacionam (visto no PDF 2):
 
 1 : Exatamente um.
@@ -71,12 +83,11 @@ Por fim, você coloca números nas pontas das linhas de associação para dizer 
 
 1..* : Um ou mais.
 
-Exemplo final:
-
+Exemplo de leitura:
 Cliente 1 ------------------ 0..* Pedido
 
 Como ler isso?
 
 "Um Cliente pode ter zero ou mais (0..*) Pedidos."
 
-"Um Pedido pertence a exatamente um (1) Cliente.
+"Um Pedido pertence a exatamente um (1) Cliente."
