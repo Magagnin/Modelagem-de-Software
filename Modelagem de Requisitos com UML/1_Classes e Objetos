@@ -1,0 +1,68 @@
+🧩 O que é necessário para fazer um diagrama de classes (UML)
+
+Um diagrama de classes é uma representação visual das classes de um sistema, mostrando seus atributos, métodos e relações com outras classes.
+É uma das partes mais importantes da modelagem orientada a objetos.
+
+🧱 1. Identificar as Classes
+
+Antes de desenhar, você precisa saber quais classes existirão no sistema.
+
+👉 Dica: analise os casos de uso, requisitos ou descrições textuais do sistema.
+Procure substantivos (ex: Cliente, Pedido, Produto, Conta).
+
+Exemplo:
+
+“O cliente faz um pedido de produtos.”
+Classes: Cliente, Pedido, Produto.
+
+🧩 2. Definir os Atributos
+
+São as características (ou estado) de cada classe.
+Procure por informações que precisam ser guardadas.
+
+Exemplo:
+
+class Cliente {
+    String nome;
+    String cpf;
+    String email;
+}
+
+⚙️ 3. Definir as Operações (Métodos)
+
+São as ações que a classe pode realizar.
+
+Procure por verbos nos requisitos.
+Exemplo: “O cliente realiza o pedido.”
+
+void realizarPedido();
+void atualizarCadastro();
+
+🔐 4. Definir a Visibilidade dos Membros
+
+Na UML usamos símbolos:
+
+Símbolo	Visibilidade	Em Java / C#	Significado
++	público	public	acessível de qualquer lugar
+-	privado	private	acessível apenas dentro da classe
+#	protegido	protected	acessível dentro da classe e herdeiros
+
+Exemplo UML:
+
+-------------------------
+|      Cliente          |
+-------------------------
+| - nome : String       |
+| - cpf : String        |
+-------------------------
+| + realizarPedido()    |
+| + atualizarCadastro() |
+-------------------------
+
+🔗 5. Representar os Relacionamentos entre Classes
+Tipo de Relação	Símbolo/Descrição	Exemplo
+Associação	Uma classe “usa” outra	Cliente → Pedido
+Agregação	Uma classe “tem” outra, mas de forma fraca (vários podem compartilhar)	Departamento → Funcionário
+Composição	Uma classe “é dona” da outra (forte dependência)	Pedido → ItemPedido
+Herança (Generalização)	Classe filha herda da classe pai	Pessoa ⟶ Aluno
+Dependência	Uma classe depende temporariamente da outra	Relatório → BancoDeDados
