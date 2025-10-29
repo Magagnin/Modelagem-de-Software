@@ -1,0 +1,82 @@
+Passo 1: "Caçar" as Classes
+O primeiro passo é ler o problema e "caçar" as classes.
+
+O que procurar? Procure por substantivos principais no texto. Coisas como Cliente, Pedido, Produto, Nota Fiscal, Usuário.
+
+Como separar? O (PDF 1) dá uma dica boa: separe as classes em três tipos:
+
+Entidade (Entity): São as classes que guardam dados (a maioria). Ex: Cliente, Produto.
+
+Fronteira (Boundary): São as classes que fazem a "ponte" com o usuário (as telas). Ex: TelaLogin, FormularioCadastro.
+
+Controle (Control): São as classes "chefes" que coordenam as tarefas. Ex: ControladorDeVenda, GerenciadorDeLogin.
+
+
+Passo 2: Detalhar as "Caixinhas"
+Agora que você tem as classes, desenhe a caixinha de cada uma. O (PDF 2) mostra que ela tem 3 partes:
+
+[ Nome da Classe ]
+
+Ex: Cliente
+
+[ Atributos ]
+
+São as "características" ou "o que ela tem".
+
+Ex: nome, cpf, email.
+
+[ Operações (Métodos) ]
+
+São as "ações" ou "o que ela faz".
+
+Ex: fazerPedido(), consultarHistorico().
+
+
+Passo 4: Conectar as Peças (Os Relacionamentos)
+Essa é a parte mais importante. Como as classes "conversam"? O (PDF 2) mostra os principais:
+
+Associação (A linha reta):
+
+O que é? É o relacionamento mais comum. Diz que uma classe "conhece" ou "usa" a outra.
+
+Exemplo: Cliente --- Pedido. (Um Cliente faz um Pedido).
+
+Generalização / Herança (A seta com triângulo branco ◁):
+
+O que é? É a relação "é-um-tipo-de". A classe "filha" herda tudo da "mãe".
+
+Exemplo: Pessoa <|--- Cliente. (Um Cliente é-um-tipo-de Pessoa. Ele tem nome, cpf, etc., mais o que for só dele, como limiteDeCredito).
+
+Agregação (O losango branco ◇):
+
+O que é? É uma associação do tipo "tem-um", mas as partes são independentes.
+
+Exemplo: Time <>--- Jogador. (Um Time tem Jogadores, mas se o time acabar, o jogador continua existindo).
+
+Composição (O losango preto ◆):
+
+O que é? É um "tem-um" forte. A parte "morre" junto com o todo.
+
+Exemplo: Pedido <#>--- ItemDePedido. (Se você apagar o Pedido, o ItemDePedido não faz sentido existir sozinho, ele morre junto).
+
+
+Passo 5: Definir as "Regras" (Multiplicidade)
+Por fim, você coloca números nas pontas das linhas de associação para dizer quantos de cada lado se relacionam (visto no PDF 2):
+
+1 : Exatamente um.
+
+0..1 : Zero ou um.
+
+* (ou 0..*) : Zero ou mais.
+
+1..* : Um ou mais.
+
+Exemplo final:
+
+Cliente 1 ------------------ 0..* Pedido
+
+Como ler isso?
+
+"Um Cliente pode ter zero ou mais (0..*) Pedidos."
+
+"Um Pedido pertence a exatamente um (1) Cliente.
