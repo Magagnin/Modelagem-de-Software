@@ -1,0 +1,57 @@
+🧩 Resumo – Diagrama de Comunicação (UML)
+
+O Diagrama de Comunicação (ou Diagrama de Colaboração) é um dos dois tipos de diagramas de interação da UML, sendo equivalente ao diagrama de sequência, porém com ênfase nas relações entre os objetos, e não na ordem temporal das mensagens.
+
+🎯 Objetivo
+
+Representar como os objetos colaboram entre si para executar um caso de uso, destacando:
+
+Quem se comunica com quem;
+
+Quais mensagens são trocadas;
+
+A ordem em que as mensagens acontecem.
+
+🔗 Características principais
+
+Mostra objetos e ligações (associações) entre eles.
+
+Cada ligação representa um canal de comunicação.
+
+As mensagens são identificadas por números de sequência (ex.: 1, 1.1, 1.2, 2, etc.).
+
+Pode incluir condições e iterações, conforme a sintaxe:
+
+[condição]:mensagem(parâmetros)
+*[repetição]:mensagem(parâmetros)
+
+
+Exemplos:
+
+[senha válida]:abrirJanela()
+
+*[i := 1..10]:desenhar(i)
+
+🕹️ Elementos principais
+Elemento	Descrição
+Objetos	Instâncias das classes que participam da interação.
+Ligações	Conexões entre objetos (indicam possíveis mensagens).
+Mensagens	Chamadas de métodos trocadas entre objetos.
+Numeração	Define a ordem das mensagens.
+Condições / Iterações	Representam decisões ou repetições no fluxo.
+🧠 Tipos de mensagens
+
+Síncrona: o remetente espera a resposta antes de continuar.
+
+Assíncrona: o remetente envia e continua sem esperar retorno.
+
+Retorno: indica o fim de uma operação e o retorno de controle.
+
+⚖️ Comparação com o Diagrama de Sequência
+Aspecto	Diagrama de Sequência	Diagrama de Comunicação
+Ênfase	Ordem temporal das mensagens	Relações entre objetos
+Layout	Linear (vertical)	Bidimensional (mais compacto)
+Leitura	Mostra a linha de vida dos objetos	Mostra as conexões e mensagens
+
+
+Vantagem	Clareza temporal	Melhor aproveitamento do espaço
