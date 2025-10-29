@@ -1,0 +1,79 @@
+🎬 Como Montar um Diagrama de Sequência (Resumo)
+Pense no Diagrama de Classes como o "Elenco do Filme" (quem são os atores).
+
+        O Diagrama de Sequência é o "Roteiro" desse filme.
+        Ele mostra, cena por cena, a ordem exata em que os objetos "conversam" 
+        (trocam mensagens) para uma tarefa acontecer.
+
+🗺️ Passo 1: Definir o Contexto (O Cenário)
+Você não faz um diagrama de sequência para o sistema inteiro de uma vez. Você faz para um cenário específico de um Caso de Uso.
+
+Caso de Uso: Fazer Login
+
+Cenário 1 (Caminho Feliz): "Usuário digita login e senha corretos e entra."
+
+Cenário 2 (Exceção): "Usuário digita a senha errada."
+
+Escolha apenas UM cenário para começar. Vamos usar o "Caminho Feliz" como exemplo.
+
+👥 Passo 2: Escalar os "Atores" (Os Objetos)
+No topo do diagrama, da esquerda para a direita, coloque as "caixinhas" dos participantes, geralmente nesta ordem:
+
+O Ator (bonequinho): Quem inicia a ação (ex: Cliente).
+
+O Objeto de Fronteira (Tela): A tela com que o ator interage (ex: :TelaLogin).
+
+O Objeto de Controle (O "Chefe"): A classe que coordena a tarefa (ex: :ControladorLogin).
+
+(Depois) Os Objetos de Entidade (Dados): As classes que guardam os dados (ex: :Usuario).
+
+Nota: O : antes do nome (ex: :TelaLogin) significa que é um objeto ou instância da classe TelaLogin participando daquela interação.
+
+Abaixo de cada um, desce uma Linha de Vida (linha pontilhada ...).
+
+💬 Passo 3: A "Conversa" (As Mensagens)
+Agora vem o principal: as setas. Elas são as mensagens, lidas de cima para baixo (o tempo passa para baixo).
+
+Chamada (Seta Cheia ->):
+
+O Cliente "clica" na tela. Isso é uma mensagem (ex: clicarBotaoLogin(user, senha)).
+
+A :TelaLogin não sabe o que fazer com isso, ela só repassa para o "chefe".
+
+A :TelaLogin chama o :ControladorLogin (ex: validarLogin(user, senha)).
+
+Retorno (Seta Pontilhada -->):
+
+Quando o :ControladorLogin terminar, ele retorna uma resposta para a :TelaLogin (ex: loginOK).
+
+🗃️ Passo 4: Envolver os "Dados" (As Entidades)
+O :ControladorLogin precisa verificar se a senha está certa. Onde estão os dados? Na classe de Entidade.
+
+Chamada para Entidade:
+
+O :ControladorLogin chama o objeto :Usuario (ou :RepositorioUsuario) para buscar os dados no banco (ex: buscarPorLogin(user)).
+
+Retorno da Entidade:
+
+O :Usuario retorna os dados encontrados (ex: dadosUsuario).
+
+O Controlador "pensa": O controlador compara a senha que veio da tela com a senha que veio do banco.
+
+🔄 Passo 5: Adicionar a "Lógica" (Fragmentos)
+Para cenários mais complexos, usamos "caixas" que envolvem as mensagens:
+
+[ opt ] (Opcional): Um "IF". Acontece apenas se uma condição for verdadeira.
+
+Ex: [ opt | cliente quer recibo ] -> :Caixa chama :Impressora.imprimir().
+
+[ alt ] (Alternativa): Um "IF / ELSE". Mostra dois ou mais caminhos que se excluem.
+
+Ex: Uma caixa [ alt ] dividida ao meio:
+
+Em cima: [ senha == correta ] -> mensagem loginOK.
+
+Embaixo: [ else ] -> mensagem senhaIncorreta.
+
+[ loop ] (Repetição): Um "FOR" ou "WHILE". Mostra que um conjunto de mensagens se repete.
+
+Ex: [ loop | para cada item no carrinho ] -> :Pedido chama :Item.calcularSubtotal().
